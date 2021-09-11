@@ -14,7 +14,7 @@ This is a Web Application Development Project.
 1. $ docker-compose run web rails new . --force --no-deps --database=postgresql --skip-test --webpacker
 2. Modifying "database.yml" to the current one
 3. $ docker-compose run web rails db:create
-4. docker-compose up -d
+4. $ docker-compose up -d
 5. http://localhost:3000/
 
 ## References
