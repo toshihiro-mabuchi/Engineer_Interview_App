@@ -1,4 +1,4 @@
-# Genkinomoto1 
+# EngineerInterviewApp
 This is a Web Application Development Project.
 
 ## How to set up Rails Application with Docker
