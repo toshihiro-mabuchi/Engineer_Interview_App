@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_043551) do
+ActiveRecord::Schema.define(version: 2021_10_07_055129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "movies", force: :cascade do |t|
+    t.integer "order_number"
+    t.string "title"
+    t.text "text"
+    t.text "thumbnail_url"
+    t.string "youtube_mid"
+    t.string "youtube_url"
+    t.string "author_name"
+    t.boolean "display_flag", default: true
+    t.bigint "pattern_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pattern_id"], name: "index_movies_on_pattern_id"
+  end
 
   create_table "patterns", force: :cascade do |t|
     t.string "name"
@@ -33,4 +48,5 @@ ActiveRecord::Schema.define(version: 2021_10_07_043551) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "movies", "patterns"
 end
