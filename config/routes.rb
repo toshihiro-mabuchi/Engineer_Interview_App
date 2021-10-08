@@ -7,4 +7,12 @@ Rails.application.routes.draw do
       sessions: 'users/sessions'
     }
 
+  resources :patterns do
+    member do
+      resources :movies
+    end
+  end
+
+  resources :logs
+
 end
