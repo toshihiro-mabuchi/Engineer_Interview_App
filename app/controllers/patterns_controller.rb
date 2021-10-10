@@ -1,4 +1,4 @@
-class LogsController < ApplicationController
+class PatternsController < ApplicationController
 
   # GET /resource/index
   def index
