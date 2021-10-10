@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2021_10_07_102053) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.integer "order_number"
     t.string "title"
     t.text "text"
     t.text "thumbnail_url"
@@ -31,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_102053) do
     t.string "author_name"
     t.boolean "display_flag", default: true
     t.bigint "pattern_id"
+    t.integer "order_number", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pattern_id"], name: "index_movies_on_pattern_id"
