@@ -10,6 +10,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.string :author_name
       t.boolean :display_flag, default: true
       t.references :pattern, foreign_key: true
+      t.integer :order_number, default: 0
 
       t.timestamps
     end
