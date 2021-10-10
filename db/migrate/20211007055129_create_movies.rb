@@ -1,7 +1,6 @@
 class CreateMovies < ActiveRecord::Migration[6.1]
   def change
     create_table :movies do |t|
-      t.integer :order_number
       t.string :title
       t.text :text
       t.text :thumbnail_url
@@ -10,7 +9,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.string :author_name
       t.boolean :display_flag, default: true
       t.references :pattern, foreign_key: true
-      t.integer :order_number, null: false
+      t.integer :order_number, default: 0
 
       t.timestamps
     end
