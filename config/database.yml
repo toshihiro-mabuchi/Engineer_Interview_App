@@ -17,6 +17,7 @@ test:
 
 production:
   <<: *default
-  database: product_register_production
-  username: product_register
-  password: <%= ENV['PRODUCT_REGISTER_DATABASE_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
