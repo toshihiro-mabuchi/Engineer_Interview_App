@@ -8,12 +8,21 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   imagemagick \
   build-essential \
   libpq-dev \
-  postgresql-client
+  postgresql-client \
+  vim
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock /app/
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 
 RUN bundle install
+
+COPY . /app
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]

@@ -4,7 +4,7 @@ default: &default
   host: db
   user: postgres
   port: 5432
-  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
+  password:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -19,5 +19,5 @@ production:
   <<: *default
   host: <%= ENV['DB_HOST'] %>
   database: <%= ENV['DB_NAME'] %>
-  username: <%= ENV['DB_USER'] %>
+  user: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
