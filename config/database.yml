@@ -4,16 +4,18 @@ default: &default
   host: db
   user: postgres
   port: 5432
-  password: postgres
+  password:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: product_register_development
+  password: postgres
 
 test:
   <<: *default
   database: product_register_test
+  password: postgres
 
 production:
   <<: *default
