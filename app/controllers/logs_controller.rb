@@ -5,6 +5,11 @@ class LogsController < ApplicationController
 
   end
 
+  # GET /resource/index
+  def show
+
+  end
+
   # GET /resource/new
   def new
 

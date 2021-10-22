@@ -6,12 +6,17 @@ User.create!(
   password_confirmation: "password"
 )
 
-# 面談パターンサンプルデータ作成
+puts '管理者データー作成'
+
+# 面談パターンサンプルデーター作成
 4.times do |i|
   n = i + 1 
   Pattern.create!(
     name: "パターン#{n}"
-)
+  )
+end
+
+puts '面談パターンサンプルデーター作成'
 
 # 面談動画サンプルデーター作成
 Movie.create!(
@@ -93,5 +98,5 @@ Movie.create!(
   pattern_id: 2,
   order_number: 4,
   display_flag: true)
-  
-end
+
+puts '面談動画サンプルデーター作成'
