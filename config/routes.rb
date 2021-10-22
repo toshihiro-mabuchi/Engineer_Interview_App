@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :patterns do
     member do
+      get 'movies/next_movies'
       resources :movies
     end
   end

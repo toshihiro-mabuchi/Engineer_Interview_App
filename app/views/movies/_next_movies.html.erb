@@ -1,0 +1,25 @@
+<% debugger %>
+<% if @movie_size == 0 %>
+  <div style="margin-top: 150px; font-size: 30px;">ただいま、準備中です。</div>
+  <div style="font-size: 30px;">暫くお待ち下さい！</div>
+<% else %>
+  <% @movies.each do |movie|%>
+    <div class="movie__inner">
+      <div class="movie__title">
+        <%= movie.title.truncate(50) %>
+        <div class="display-off-text"></div>
+      </div>
+      <div class="movie__iframe embed-responsive embed-responsive-21by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= movie.youtube_mid %>"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                style="height: 169px;" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="movie__text">
+        <%= movie.text %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to '>', movies_path(@pattern.id + 1), remote: true, class: "btn btn-sm btn-success" %>

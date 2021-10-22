@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2021_10_07_102053) do
 
   # These are extensions that must be enabled in order to support this database
-
   enable_extension "plpgsql"
 
   create_table "logs", force: :cascade do |t|
@@ -56,5 +55,4 @@ ActiveRecord::Schema.define(version: 2021_10_07_102053) do
   end
 
   add_foreign_key "movies", "patterns"
-
 end

@@ -10,10 +10,12 @@ default: &default
 development:
   <<: *default
   database: product_register_development
+  password: postgres
 
 test:
   <<: *default
   database: product_register_test
+  password: postgres
 
 production:
   <<: *default
