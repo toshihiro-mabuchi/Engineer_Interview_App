@@ -38,6 +38,12 @@ class MoviesController < ApplicationController
     @movies = Movie.where(pattern_id: params[:id]).order(:order_number)
     @movie_size = Movie.where(pattern_id: params[:id]).size
     @pattern = Pattern.find(params[:id])
+    # respond_to do |format|
+    #   format.html {}
+    #   format.js {}
+    # end
+    # results = { :message => post_text }
+    # render partial: 'ajax_partial', locals: { :results => results }
   end
 
 end

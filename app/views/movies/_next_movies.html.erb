@@ -1,3 +1,4 @@
+
 <% if @movie_size == 0 %>
   <div style="margin-top: 150px; font-size: 30px;">ただいま、準備中です。</div>
   <div style="font-size: 30px;">暫くお待ち下さい！</div>
@@ -20,5 +21,6 @@
     </div>
   <% end %>
 <% end %>
+
 
 <%= link_to '>', movies_next_movies_pattern_path(@pattern.id + 1), remote: true %>
