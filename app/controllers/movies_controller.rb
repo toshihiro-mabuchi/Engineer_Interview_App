@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
     @movies = Movie.where(pattern_id: params[:id]).order(:order_number)
     @movie_size = Movie.where(pattern_id: params[:id]).size
     @pattern = Pattern.find(params[:id])
+    @pattern_size = Pattern.all.size
   end
 
   # GET /resource/index
@@ -12,6 +13,7 @@ class MoviesController < ApplicationController
     # @movies = Movie.where(pattern_id: params[:id]).order(:order_number)
     # @movie_size = Movie.where(pattern_id: params[:id]).size
     # @pattern = Pattern.find(params[:id])
+    # @pattern_size = Pattern.all.size
   end
 
   # GET /resource/new
@@ -38,6 +40,7 @@ class MoviesController < ApplicationController
     @movies = Movie.where(pattern_id: params[:id]).order(:order_number)
     @movie_size = Movie.where(pattern_id: params[:id]).size
     @pattern = Pattern.find(params[:id])
+    @pattern_size = Pattern.all.size
     # respond_to do |format|
     #   format.html {}
     #   format.js {}

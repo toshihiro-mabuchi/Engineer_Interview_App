@@ -4,15 +4,10 @@
 
 <div class="movie container" style="text-align: center;">
   <div class="row">
-    <div id="next-movies">
-      <div id="updated_by_ajax" class="col align-self-center">
+    <div id="movie__index" class="col align-self-center">
+      <div id="next-movies">
         <%= render 'next_movies' %>
       </div>
     </div>
   </div>
 </div>
-
-<%= javascript_pack_tag 'ajax' %>
-<script>
-  register_callback();
-</script>

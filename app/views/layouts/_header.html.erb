@@ -1,0 +1,27 @@
+<header class="navbar navbar-fixed-top navbar-default" id="header">
+  <div class="container">
+    <%= link_to "面談練習アプリ", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle header-list" data-toggle="dropdown" id="dropdown-title">
+            <% if user_signed_in? %>
+              管理者ログイン中 <b class="caret"></b>
+            <% else %>
+              管理者はこちら <b class="caret"></b>
+            <% end %>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <% if !user_signed_in? %>
+                <%= link_to "ログイン", new_user_session_path, class: "header-list" %>
+              <% else %>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-list" %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
