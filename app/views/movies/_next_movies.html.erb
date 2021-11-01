@@ -16,6 +16,7 @@
         </iframe>
       </div>
       <div class="movie-comment">
+        <span class="movie-comment-title">コメント</span>
         <p><%= movie.comment %><p>
       </div>
     </div>
@@ -23,9 +24,13 @@
 <% end %>
 
 <% if @pattern.id != 1 %>
-  <%= link_to '< 前の動画', movies_next_movies_pattern_path(@pattern.id - 1), remote: true %>
+  <button type="button" class="btn-square-little-rich">
+    <%= link_to '< 前の動画', movies_next_movies_pattern_path(@pattern.id - 1), remote: true, style: "text-decoration: none;" %>
+  </button>
 <% end %>
 
 <% if (@pattern.id + 1) <= @pattern_size %>
-  <%= link_to '次の動画 >', movies_next_movies_pattern_path(@pattern.id + 1), remote: true %>
+  <button type="button" class="btn-square-little-rich">
+    <%= link_to '次の動画 >', movies_next_movies_pattern_path(@pattern.id + 1), remote: true, style: "text-decoration: none;" %>
+  </button>
 <% end %>
