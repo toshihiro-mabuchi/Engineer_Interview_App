@@ -1,11 +1,8 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
+@import '~bootstrap/scss/bootstrap';
 
  /* フラッシュメッセージ */
 
-flash {
+ flash {
   padding: 10px 0;
   color: white;
   background: #7FC3FF;
@@ -51,9 +48,10 @@ flash {
   }
 }
 
-li .header-list {
+.header-list {
   color: #fff !important;
   font-weight: bold;
+  text-decoration: none;
   &:hover {
     color: silver !important;
   }

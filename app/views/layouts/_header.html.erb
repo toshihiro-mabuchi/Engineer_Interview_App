@@ -1,9 +1,9 @@
 <header class="navbar navbar-fixed-top navbar-default" id="header">
   <div class="container">
-    <%= link_to "面談練習アプリ", root_path, id: "logo" %>
+    <%= link_to "ウェブエンジニア面談練習アプリ", root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+      <div class="nav navbar-nav navbar-right">
+        <div class="dropdown">
           <a href="#" class="dropdown-toggle header-list" data-toggle="dropdown" id="dropdown-title">
             <% if user_signed_in? %>
               管理者ログイン中 <b class="caret"></b>
@@ -11,17 +11,22 @@
               管理者はこちら <b class="caret"></b>
             <% end %>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" aria-labelledby="dropdown-title">
+            <!--
             <li>
               <% if !user_signed_in? %>
-                <%= link_to "ログイン", new_user_session_path, class: "header-list" %>
+                <%= link_to "ログイン", new_user_session_path, class: "dropdown-item" %>
               <% else %>
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-list" %>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               <% end %>
             </li>
+            -->
+            <li><button class="dropdown-item" type="button">Action</button></li>
+            <li><button class="dropdown-item" type="button">Another action</button></li>
+            <li><button class="dropdown-item" type="button">Something else here</button></li>
           </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
