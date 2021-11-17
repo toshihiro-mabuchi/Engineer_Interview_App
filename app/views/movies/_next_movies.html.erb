@@ -26,12 +26,12 @@
 
 <% if @pattern.id != 1 %>
   <button type="button" class="btn-square-little-rich">
-    <%= link_to '< 前の動画', movies_next_movies_pattern_path(@pattern.id - 1), remote: true, style: "text-decoration: none;" %>
+    <%= link_to '< 前の動画', next_movies_path(id: @pattern.id - 1), remote: true, style: "text-decoration: none;" %>
   </button>
 <% end %>
 
 <% if (@pattern.id + 1) <= @pattern_size %>
   <button type="button" class="btn-square-little-rich">
-    <%= link_to '次の動画 >', movies_next_movies_pattern_path(@pattern.id + 1), remote: true, style: "text-decoration: none;" %>
+    <%= link_to '次の動画 >', next_movies_path(id: @pattern.id + 1), remote: true, style: "text-decoration: none;" %>
   </button>
 <% end %>

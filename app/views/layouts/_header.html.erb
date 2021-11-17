@@ -11,7 +11,7 @@
             <% if !user_signed_in? %>
               <li><button class="dropdown-item" type="button"><%= link_to "ログイン", new_user_session_path, class: "dropdown-item" %></button></li>
             <% else %>
-              <li><button class="dropdown-item" type="button">Something else here</button></li>
+              <li><button class="dropdown-item" type="button"><%= link_to '面談動画一覧', movies_path, method: :get, class: "dropdown-item" %></button></li>
               <li><button class="dropdown-item" type="button"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %></button></li>
             <% end %>
           </ul>
