@@ -6,9 +6,13 @@
   <%= link_to "新規登録", new_movie_url, remote: true, class: "btn btn-primary movie__link" %>
 </div>
 
-<div class="container">
+<section class="movie container" id="member-movie">
   <% @movies.each do |pattern_id, movies| %>
-    <h3><%= Pattern.find(pattern_id).name %></h3>
+    <% if pattern_id == 0 %>
+      <h3><%= "未分類" %></h3>
+    <% else %>
+      <h3><%= Pattern.find(pattern_id).name %></h3>
+    <% end %>
     <% movies.each do |movie| %>
       <div class="movie__inner">
         <div class="movie__title">
@@ -21,7 +25,9 @@
                   style="height: 169px;" allowfullscreen>
           </iframe>
         </div>
-
+        <div class="movie_comment">
+            <%= movie.comment %>
+          </div>
         <div class="movie__edit">
           <%= link_to "編集", edit_movie_path(movie), remote: true, class: "btn btn-success" %>
           <%= link_to '削除', movie_path(movie),
@@ -37,4 +43,4 @@
       </div>
     <% end %>
   <% end %>
-</div>
+</section>

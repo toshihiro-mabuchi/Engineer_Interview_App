@@ -27,8 +27,7 @@ Movie.create!(
   author_name: "就活レシピ",
   comment: "サンプル動画１",
   pattern_id: 1,
-  order_number: 1,
-  display_flag: true)
+  order_number: 1)
 
 Movie.create!(
   title: "【完全版】WEB面接の通過率が劇的に上がる25のチェックリスト【就活/就職/転職】",
@@ -38,8 +37,7 @@ Movie.create!(
   author_name: "ひろさんチャンネル【面接アドバイザー社長】",
   comment: "サンプル動画２",
   pattern_id: 1,
-  order_number: 2,
-  display_flag: true)
+  order_number: 2)
 
 Movie.create!(
   title: "【ガチで内定が取れる面接練習法】就活で明日から使える8つの面接テクニックで内定獲得！",
@@ -49,8 +47,7 @@ Movie.create!(
   author_name: "ひろさんチャンネル【面接アドバイザー社長】",
   comment: "サンプル動画３",
   pattern_id: 1,
-  order_number: 3,
-  display_flag: true)
+  order_number: 3)
 
 Movie.create!(
   title: "【断言】転職の面接は、この流れで進みます。",
@@ -60,8 +57,7 @@ Movie.create!(
   author_name: "【転職】サラタメのホワイト転職",
   comment: "サンプル動画４",
   pattern_id: 1,
-  order_number: 4,
-  display_flag: true)
+  order_number: 4)
 
 Movie.create!(
   title: "この逆質問を使って、面接を無双しちゃってください",
@@ -71,8 +67,7 @@ Movie.create!(
   author_name: "末永 雄大 / すべらない転職エージェント",
   comment: "サンプル動画５",
   pattern_id: 2,
-  order_number: 1,
-  display_flag: true)
+  order_number: 1)
 
 Movie.create!(
   title: "【面接対策】転職の面接で合否を分けるたった2つのポイントを転職エージェントが解説！",
@@ -82,8 +77,7 @@ Movie.create!(
   author_name: "末永 雄大 / すべらない転職エージェント",
   comment: "サンプル動画６",
   pattern_id: 2,
-  order_number: 2,
-  display_flag: true)
+  order_number: 2)
 
 Movie.create!(
   title: "【面接通過率80%】未経験WEBエンジニアが面接で気をつけた3つのこと",
@@ -93,8 +87,7 @@ Movie.create!(
   author_name: "かよちんchannel",
   comment: "サンプル動画７",
   pattern_id: 2,
-  order_number: 3,
-  display_flag: true)
+  order_number: 3)
 
 Movie.create!(
   title: "【90％の人が知らない】エンジニアの面接で答えられるようにしておくべき3つの質問",
@@ -104,7 +97,6 @@ Movie.create!(
   author_name: "エンジニアチャンネル",
   comment: "サンプル動画８",
   pattern_id: 2,
-  order_number: 4,
-  display_flag: true)
+  order_number: 4)
 
 puts '面談動画サンプルデーター作成'

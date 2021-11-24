@@ -28,12 +28,10 @@ ActiveRecord::Schema.define(version: 2021_10_07_102053) do
     t.string "youtube_mid"
     t.string "youtube_url"
     t.string "author_name"
-    t.boolean "display_flag", default: true
-    t.bigint "pattern_id"
+    t.integer "pattern_id", default: 0
     t.integer "order_number", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pattern_id"], name: "index_movies_on_pattern_id"
   end
 
   create_table "patterns", force: :cascade do |t|
@@ -54,5 +52,4 @@ ActiveRecord::Schema.define(version: 2021_10_07_102053) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "movies", "patterns"
 end

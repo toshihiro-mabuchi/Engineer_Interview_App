@@ -28,9 +28,9 @@ class MoviesController < ApplicationController
 
   # POST /resource
   def create
-    @patterns = Pattern.all.order(:id)
-    @pattern = Pattern.find(3)
-    @movie = @pattern.movies.new(movie_params)
+    # @patterns = Pattern.all.order(:id)
+    # @pattern = Pattern.find(3)
+    movie = Movie.new(movie_params)
     youtube_url = params[:movie][:youtube_url]
     youtube_mid = youtube_url.last(11)
     url = "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=#{youtube_mid}&format=json"
@@ -48,28 +48,30 @@ class MoviesController < ApplicationController
         author_name: movie_json["author_name"],
         comment: params[:movie][:comment]
       })
-      # end
-      # if @movie.save
       if movie.save
       #   debugger
-        respond_to do |format|
-          format.js { flash.now[:success] = "動画を追加しました。" }
-          # flash.now[:success] = "動画を追加しました。"
-          # redirect_to root_path
-        end
+        # respond_to do |format|
+        #   format.js { flash.now[:success] = "動画を追加しました。" }
+        #   flash.now[:success] = "動画を追加しました。"
+        #   redirect_to root_path
+        # end
+        flash.now[:success] = "動画を追加しました。"
+        redirect_to movies_path
       end
     else
-      debugger
-      respond_to do |format|
-        format.js { flash.now[:danger] = "URLが正しくありません。" }
-        # flash.now[:danger] = "URLが正しくありません。"
-        # redirect_to root_path
-      end
+      # respond_to do |format|
+      #   format.js { flash.now[:danger] = "URLが正しくありません。" }
+      #   flash.now[:danger] = "URLが正しくありません。"
+      #   redirect_to root_path
+      # end
+      flash.now[:danger] = "URLが正しくありません。"
+      redirect_to movies_path
     end
   end
 
   # GET /resource/edit
   def edit
+    @movie = Movie.find(params[:id]) 
   end
 
   # PUT /resource
@@ -79,35 +81,46 @@ class MoviesController < ApplicationController
     youtube_url = params[:movie][:youtube_url]
     youtube_mid = youtube_url.last(11)
     url = "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=#{youtube_mid}&format=json"
-    url = URI.encode url
+    # url = URI.encode url
     uri = URI.parse url
     require "net/http"
     json = Net::HTTP.get(uri)
     if valid_json?(json)
       if movie_json = JSON.parse(json)
-        @movie.update_attributes ({
+        @movie.update ({
           title: movie_json["title"],
           thumbnail_url: movie_json["thumbnail_url"],
           youtube_mid: youtube_mid,
           youtube_url: "https://youtu.be/#{youtube_mid}",
           author_name: movie_json["author_name"],
-          category: params[:movie][:category],
-          text: params[:movie][:text],
-          display: params[:movie][:display]
+          comment: params[:movie][:comment]
         })
       end
-      respond_to do |format|
-        format.js { flash.now[:success] = "動画を更新しました。" }
-      end
+      # respond_to do |format|
+      #   format.js { flash.now[:success] = "動画を更新しました。" }
+      # end
+      flash[:success] = "動画を更新しました。"
+      redirect_to movies_path
+      # end
     else
-      respond_to do |format|
-        format.js { flash.now[:danger] = "URLが正しくありません。" }
-      end
+      # respond_to do |format|
+      #   format.js { flash.now[:danger] = "URLが正しくありません。" }
+      # end
+      flash[:danger] = "URLが正しくありません。"
+      redirect_to movies_path
     end
   end
 
   # DELETE /resource
   def destroy
+    @movie = Movie.find(params[:id])
+    if @movie.destroy
+      # respond_to do |format|
+      #   format.js { flash.now[:success] = "動画『#{@movie.title}』を削除しました。" }
+      # end
+      flash[:success] = "動画『#{@movie.title}』を削除しました。"
+      redirect_to movies_path
+    end
   end
 
   def next_movies
@@ -120,7 +133,7 @@ class MoviesController < ApplicationController
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :comment, :youtube_url)
+      params.require(:movie).permit(:youtube_url, :comment)
     end
 
     def valid_json?(json)

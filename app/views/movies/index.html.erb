@@ -1,9 +1,15 @@
-<% provide(:title, '面談動画一覧') %>
+<div class="container movie-index">
 
-<div class="conteiner">
-  <div id="movie__index">
-    <%= render 'index' %>
+  <div class="align-top"><%= render 'shared/flash_messages' %></div>
+
+  <% provide(:title, '面談動画一覧') %>
+
+  <div class="conteiner">
+    <div id="movie__index">
+      <%= render 'index' %>
+    </div>
   </div>
+
 </div>
 
 <div id="edit-movie" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

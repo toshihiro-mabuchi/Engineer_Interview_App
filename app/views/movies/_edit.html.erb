@@ -1,0 +1,45 @@
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header movie__modal-header">
+      <div class="col-10 offset-1">
+        <h3 class="modal-title">面談動画編集</h3>
+      </div>
+      <button type="button" class="btn-close" aria-label="close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body movie__modal-body ">
+      <div class="col col-md-10 offset-1">
+        <div class="edit-movies">
+          <div class="movies__form">
+            <%= form_with(model: @movie, remote: true) do |f| %>
+              <div class="movies__input">
+                <div class="movie__form-group">
+                  <%= f.label :youtube_url, "YouTubeのURL" %>
+                  <%= f.text_field :youtube_url, placeholder: 'URLを入力してください。', class: "form-control" %>
+                </div>
+                <div class="movie__form-group">
+                  <%= f.label :comment, "メッセージ" %>
+                  <%= f.text_area :comment, placeholder: '動画説明やメッセージを入力できます。（300文字以内）',
+                                          size: "8x4", class: "form-control memo" %>
+                </div>
+              </div>
+              <div class="movie__form-group">
+                <div class="btn-sub-can">
+                  <%= f.submit "更新", name: nil, class: "btn btn-success btn-edit", data: { disable_with: '送信中' } %>
+                  <button type="button" class="btn btn-outline-dark bg-light btn-edit" data-dismiss="modal">
+                    キャンセル
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          </div>          
+          <div class="col-8 pr-0">
+            <div class="row">
+              <img src="<%= @movie.thumbnail_url %>" 
+                class="bd-placeholder-img thumbnail align-items-center img-center" alt="サムネイル"><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
