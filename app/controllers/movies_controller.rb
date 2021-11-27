@@ -46,7 +46,7 @@ class MoviesController < ApplicationController
         youtube_mid: youtube_mid,
         youtube_url: "https://youtu.be/#{youtube_mid}",
         author_name: movie_json["author_name"],
-        comment: params[:movie][:comment]
+        text: params[:movie][:text]
       })
       if movie.save
       #   debugger
@@ -93,7 +93,7 @@ class MoviesController < ApplicationController
           youtube_mid: youtube_mid,
           youtube_url: "https://youtu.be/#{youtube_mid}",
           author_name: movie_json["author_name"],
-          comment: params[:movie][:comment]
+          text: params[:movie][:text]
         })
       end
       # respond_to do |format|
@@ -133,7 +133,7 @@ class MoviesController < ApplicationController
   private
 
     def movie_params
-      params.require(:movie).permit(:youtube_url, :comment)
+      params.require(:movie).permit(:youtube_url, :text)
     end
 
     def valid_json?(json)

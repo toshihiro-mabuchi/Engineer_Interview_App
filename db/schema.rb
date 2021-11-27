@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_102053) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
-    t.text "comment"
+    t.text "text"
     t.text "thumbnail_url"
     t.string "youtube_mid"
     t.string "youtube_url"

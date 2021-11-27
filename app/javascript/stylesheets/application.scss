@@ -204,7 +204,89 @@ li .dropdown-header {
 }
 
 /* 動画 */
-.movie-comment {
+.movie__inner {
+  background: #fff;
+  border: 1px #ccc solid;
+  box-shadow: 0 2px 3px 0 #ddd;
+  // font-size: 80%; 
+  padding: 20px;
+  flex-direction: row;
+  flex-basis: 100%;
+  margin-bottom: 40px;
+}
+
+.movie__title {
+  height: 50px;
+}
+
+.movie__edit {
+  text-align: center;
+}
+
+.movie {
+  width: 100%;
+  margin: 0 auto;
+  // margin: 0 5px 0 -5px;
+}
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  /* overflow: hidden; */
+  height: 120px;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.movie__modal-header {
+  // background: rgba(238, 238, 238, 1);
+  border-radius: 15px 15px 0 0;
+}
+
+.movie__modal-body {
+  // background-color: #c2e4bc;
+  border-radius: 0 0 15px 15px;
+} 
+
+.movie__link {
+  display: inline-block;
+}
+
+.movie__form-group {
+  margin-bottom: 35px;
+}
+
+.edit-movies__member {
+  padding: 20px 20px 20px 20px;
+  // background-color: #c2e4bc;
+}
+
+.movie_display_off {
+  position: relative;
+  // display: inline-block;
+  opacity: 0.5;
+  .display-off-text:before {
+    position: absolute;
+    content: "非表示";
+      top: 20px;
+      left: 1px;
+    color: #fff;
+    font-size: large;
+    text-shadow: 0 0 3px #f00, 0 0 3px #f00, 0 0 3px #f00,
+                 0 0 3px #f00, 0 0 3px #f00, 0 0 3px #f00,
+                 0 0 3px #f00, 0 0 3px #f00, 0 0 3px #f00,
+                 0 0 3px #f00, 0 0 3px #f00, 0 0 3px #f00,
+                 0 0 3px #f00, 0 0 3px #f00, 0 0 3px #f00,
+                 0 0 3px #f00;
+    opacity: 1;
+  }
+}
+
+.movie-text {
   position: relative;
   margin: 0 auto 3em auto;
   width: 350px;
@@ -212,7 +294,7 @@ li .dropdown-header {
   border: 0.5px solid #000;
   }
 
-.movie-comment .movie-comment-title {
+.movie-text .movie-text-title {
   position: absolute;
   display: inline-block;
   top: -2px;
@@ -227,7 +309,7 @@ li .dropdown-header {
   font-weight: bold;
 }
 
-.movie-comment p {
+.movie-text p {
   padding: 5px 5px;
   margin: 0;
   text-align: left;

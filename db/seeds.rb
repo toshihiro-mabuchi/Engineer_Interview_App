@@ -25,7 +25,7 @@ Movie.create!(
   youtube_mid: "MrUHouwR43o",
   youtube_url: "https://youtu.be/MrUHouwR43o",
   author_name: "就活レシピ",
-  comment: "サンプル動画１",
+  text: "サンプル動画１",
   pattern_id: 1,
   order_number: 1)
 
@@ -35,7 +35,7 @@ Movie.create!(
   youtube_mid: "RyODmVaoQZ0",
   youtube_url: "https://youtu.be/RyODmVaoQZ0",
   author_name: "ひろさんチャンネル【面接アドバイザー社長】",
-  comment: "サンプル動画２",
+  text: "サンプル動画２",
   pattern_id: 1,
   order_number: 2)
 
@@ -45,7 +45,7 @@ Movie.create!(
   youtube_mid: "j8bDR_0bIoE",
   youtube_url: "https://youtu.be/j8bDR_0bIoEhttps://youtu.be/j8bDR_0bIoE",
   author_name: "ひろさんチャンネル【面接アドバイザー社長】",
-  comment: "サンプル動画３",
+  text: "サンプル動画３",
   pattern_id: 1,
   order_number: 3)
 
@@ -55,7 +55,7 @@ Movie.create!(
   youtube_mid: "_4ejLOdJ_Ok",
   youtube_url: "https://youtu.be/_4ejLOdJ_Ok",
   author_name: "【転職】サラタメのホワイト転職",
-  comment: "サンプル動画４",
+  text: "サンプル動画４",
   pattern_id: 1,
   order_number: 4)
 
@@ -65,7 +65,7 @@ Movie.create!(
   youtube_mid: "S5RZmWHhFiQ",
   youtube_url: "https://youtu.be/S5RZmWHhFiQ",
   author_name: "末永 雄大 / すべらない転職エージェント",
-  comment: "サンプル動画５",
+  text: "サンプル動画５",
   pattern_id: 2,
   order_number: 1)
 
@@ -75,7 +75,7 @@ Movie.create!(
   youtube_mid: "hhEkZxRMIUc",
   youtube_url: "https://youtu.be/hhEkZxRMIUc",
   author_name: "末永 雄大 / すべらない転職エージェント",
-  comment: "サンプル動画６",
+  text: "サンプル動画６",
   pattern_id: 2,
   order_number: 2)
 
@@ -85,7 +85,7 @@ Movie.create!(
   youtube_mid: "mEOq2H2WX-c",
   youtube_url: "https://youtu.be/mEOq2H2WX-c",
   author_name: "かよちんchannel",
-  comment: "サンプル動画７",
+  text: "サンプル動画７",
   pattern_id: 2,
   order_number: 3)
 
@@ -95,7 +95,7 @@ Movie.create!(
   youtube_mid: "Pn7rTqSCS5c",
   youtube_url: "https://youtu.be/Pn7rTqSCS5c",
   author_name: "エンジニアチャンネル",
-  comment: "サンプル動画８",
+  text: "サンプル動画８",
   pattern_id: 2,
   order_number: 4)
 
