@@ -1,8 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 
- /* フラッシュメッセージ */
-
- flash {
+/* フラッシュメッセージ */
+flash {
   padding: 10px 0;
   color: white;
   background: #7FC3FF;
@@ -235,7 +234,7 @@ li .dropdown-header {
   width: 100%;
   padding: 0;
   /* overflow: hidden; */
-  height: 120px;
+  // height: 120px;
 }
 
 .modal-title {
