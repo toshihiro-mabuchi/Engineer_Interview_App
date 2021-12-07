@@ -1,3 +1,4 @@
+<h3><%= @pattern.name %></h3>
 
 <% if @movie_size == 0 %>
   <div style="margin-top: 150px; font-size: 30px;">ただいま、準備中です。</div>
@@ -15,12 +16,22 @@
                 style="height: 169px;" allowfullscreen>
         </iframe>
       </div>
-      <div class="movie__text">
-        <%= movie.text %>
+      <div class="movie-text">
+        <span class="movie-text-title">コメント</span>
+        <p><%= movie.text %><p>
       </div>
     </div>
   <% end %>
 <% end %>
 
+<% if @pattern.id != 1 %>
+  <button type="button" class="btn-square-little-rich">
+    <%= link_to '< 前の動画', next_movies_path(id: @pattern.id - 1), remote: true, style: "text-decoration: none;" %>
+  </button>
+<% end %>
 
-<%= link_to '>', movies_next_movies_pattern_path(@pattern.id + 1), remote: true %>
+<% if (@pattern.id + 1) <= @pattern_size %>
+  <button type="button" class="btn-square-little-rich">
+    <%= link_to '次の動画 >', next_movies_path(id: @pattern.id + 1), remote: true, style: "text-decoration: none;" %>
+  </button>
+<% end %>

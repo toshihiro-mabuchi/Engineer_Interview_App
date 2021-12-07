@@ -7,8 +7,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.string :youtube_mid
       t.string :youtube_url
       t.string :author_name
-      t.boolean :display_flag, default: true
-      t.references :pattern, foreign_key: true
+      t.integer :pattern_id, default: 0
       t.integer :order_number, default: 0
 
       t.timestamps
