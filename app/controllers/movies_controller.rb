@@ -49,21 +49,10 @@ class MoviesController < ApplicationController
         text: params[:movie][:text]
       })
       if movie.save
-      #   debugger
-        # respond_to do |format|
-        #   format.js { flash.now[:success] = "動画を追加しました。" }
-        #   flash.now[:success] = "動画を追加しました。"
-        #   redirect_to root_path
-        # end
         flash.now[:success] = "動画を追加しました。"
         redirect_to movies_path
       end
     else
-      # respond_to do |format|
-      #   format.js { flash.now[:danger] = "URLが正しくありません。" }
-      #   flash.now[:danger] = "URLが正しくありません。"
-      #   redirect_to root_path
-      # end
       flash.now[:danger] = "URLが正しくありません。"
       redirect_to movies_path
     end
@@ -96,16 +85,9 @@ class MoviesController < ApplicationController
           text: params[:movie][:text]
         })
       end
-      # respond_to do |format|
-      #   format.js { flash.now[:success] = "動画を更新しました。" }
-      # end
       flash[:success] = "動画を更新しました。"
       redirect_to movies_path
-      # end
     else
-      # respond_to do |format|
-      #   format.js { flash.now[:danger] = "URLが正しくありません。" }
-      # end
       flash[:danger] = "URLが正しくありません。"
       redirect_to movies_path
     end
@@ -115,9 +97,6 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     if @movie.destroy
-      # respond_to do |format|
-      #   format.js { flash.now[:success] = "動画『#{@movie.title}』を削除しました。" }
-      # end
       flash[:success] = "動画『#{@movie.title}』を削除しました。"
       redirect_to movies_path
     end
