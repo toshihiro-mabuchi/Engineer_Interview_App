@@ -1,5 +1,5 @@
 import 'bootstrap'
-import '../stylesheets/application'
+import '../stylesheets/application.scss'
 
 require("@rails/ujs").start()
 require("turbolinks").start()
