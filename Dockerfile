@@ -23,12 +23,14 @@ COPY Gemfile.lock /app/Gemfile.lock
 
 RUN bundle install
 
-COPY . /app
-
 # アセットのプリコンパイル
 RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
  && yarn cache clean \
- && rm -rf node_modules tmp/cache
+ && rm -rf node_modules tmp/cache \
+ && rails webpacker:install \
+ && rails webpacker:compile
+
+COPY . /app
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
