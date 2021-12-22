@@ -1,0 +1,2 @@
+class SelectedMovie < ApplicationRecord
+end

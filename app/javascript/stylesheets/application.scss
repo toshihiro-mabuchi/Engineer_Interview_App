@@ -32,22 +32,42 @@ h1, h2, h3, h4, h5 {
   margin-top: 2rem;
 }
 
-.btn-solid-silver {
+// .btn-solid-silver {
+//   width: 300px;
+//   margin: 10px;
+//   color: #000;
+//   border-top: 4px solid #d8dcdc;
+//   border-right: 4px solid #666;
+//   border-bottom: 4px solid #333;
+//   border-left: 4px solid #868888;
+//   border-radius: 0;
+//   background-image: -webkit-linear-gradient(135deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
+//   background-image: linear-gradient(-45deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
+//   text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
+// }
+
+// .btn-solid-silver:hover {
+//   text-shadow: 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff;
+// }
+
+.btn-solid {
   width: 300px;
   margin: 10px;
-  color: #000;
-  border-top: 4px solid #d8dcdc;
-  border-right: 4px solid #666;
-  border-bottom: 4px solid #333;
-  border-left: 4px solid #868888;
+  color: #fff;
+  border-top: 4px solid #48ecc4;
+  border-right: 4px solid #0a5f4a;
+  border-bottom: 4px solid #0f745b;
+  border-left: 4px solid #8cf9de;
   border-radius: 0;
-  background-image: -webkit-linear-gradient(135deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
-  background-image: linear-gradient(-45deg, #333 0%, #868888 20%, #d8dcdc 34%, white 53%, #666 100%);
-  text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff;
+  background: #11a37f;
 }
 
-.btn-solid-silver:hover {
-  text-shadow: 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff;
+.btn-solid:hover {
+  color: #fff;
+  border-top: 4px solid #0f745b;
+  border-right: 4px solid #8cf9de;
+  border-bottom: 4px solid #48ecc4;
+  border-left: 4px solid #0a5f4a;
 }
 
 .btn-square-little-rich {
@@ -119,12 +139,12 @@ li .dropdown-header {
 .dropdown-toggle {
   white-space: nowrap;
   background-color: #000;
-  color: #fff;
+  color: gray;
 }
 
 .dropdown-item {
-  background-color: rgb(105, 101, 101) !important;
-  color: #fff !important;
+  background-color: black !important;
+  color: gray !important;
 }
 
 /* ログイン画面 */
@@ -285,15 +305,15 @@ li .dropdown-header {
   }
 }
 
-.movie-text {
+.movie__text {
   position: relative;
-  margin: 0 auto 3em auto;
-  width: 350px;
+  // margin: 0 auto 3em auto;
+  // width: 350px;
   padding: 25px 10px 7px;
   border: 0.5px solid #000;
   }
 
-.movie-text .movie-text-title {
+.movie__text .movie__text__title {
   position: absolute;
   display: inline-block;
   top: -2px;
@@ -308,7 +328,7 @@ li .dropdown-header {
   font-weight: bold;
 }
 
-.movie-text p {
+.movie__text p {
   padding: 5px 5px;
   margin: 0;
   text-align: left;

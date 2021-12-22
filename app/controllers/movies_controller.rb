@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all.order(:pattern_id, :order_number).group_by(&:pattern_id)
   end
 
-  # GET /resource/index
+  # GET /resource/show
   def show
     # @movies = Movie.where(pattern_id: params[:id]).order(:order_number)
     # @movie_size = Movie.where(pattern_id: params[:id]).size

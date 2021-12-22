@@ -20,7 +20,11 @@
                 <%= f.text_area :text, placeholder: '動画説明やコメントを入力できます。（300文字以内）',
                                           size: "20x7", class: "form-control memo" %>
               </div>
+              <br>
               <%= f.submit class: "btn btn-primary", data: { disable_with: '送信中' } %>
+              <button type="button" class="btn btn-outline-dark bg-light btn-edit" data-bs-dismiss="modal">
+                キャンセル
+              </button>
             <% end %>
           </div>
         </div>

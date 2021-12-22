@@ -11,7 +11,8 @@
       <h2>面談動画パターン選択</h2><br>
       <% @patterns.each do |pattern| %>
         <div class="btn-group">
-          <button type="button" class="btn-solid-silver">
+          <!-- <button type="button" class="btn-solid-silver"> -->
+          <button type="button" class="btn-solid">
             <%= link_to "#{pattern.name}", selected_patterns_path(id: pattern.id), method: :get, class: "btn btn-block w-100" %>
           </button>
         </div><br>
