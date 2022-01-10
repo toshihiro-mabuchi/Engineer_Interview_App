@@ -1,0 +1,265 @@
+<div class="container movie-selected">
+
+  <div class="align-top"><%= render 'shared/flash_messages' %></div>
+
+  <% provide(:title, '面談動画一覧') %>
+
+  <div style="text-align: center;">
+    <h1><%= "面談動画選択" %></h1>
+  </div>
+
+  <hr>
+
+  <!-- User一覧をリスト表示 -->
+  <h4>Movie</h4>
+
+  <table id="list" class="table border" width="1000">
+    <tr style="text-align: center;">
+      <th>No.</th>
+      <th>タイトル</th>
+    </tr>
+    <% number = 0 %>
+    <!--% Array(@movies).each do |movie| %-->
+    <% @movies.each do |movie| %>
+      <!-- rowにドラッグ可能(draggable)属性を指定 -->
+      <% number += 1 %>
+      <tr class="item" draggable="true" id="<%= movie.id %>">
+        <td><%= number %></td>
+        <td><%= movie.title %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br>
+
+  <!-- SelectedUser一覧をリスト表示 -->
+  <h4>SelectedMovie</h4>
+
+  <table class="table border" width="1000">
+    <tr>
+      <!-- ドロップエリア -->
+      <td colspan="6" id="dropzone" class="dropzone"></td>
+    </tr>
+
+    <tr style="text-align: center;">
+      <th>No.</th>
+      <th>タイトル</th>
+      <th>パターン</th>
+      <th>表示順</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <!--% Array(@selected_movies).each do |selected_movie| %-->
+    <% number = 0 %>
+    <% @selected_movies.each do |selected_movie| %>
+      <% number += 1 %>
+      <tr>
+        <!--
+        <td>< %= selected_movie.movie_id %></td>
+        <td>< %= Movie.find(selected_movie.movie_id).title %></td>
+        <td>< %= selected_movie.selected %></td>
+        -->
+        <td><%= number %></td>
+        <td><%= selected_movie.title %></td>
+        <td style="text-align: center;"><%= selected_movie.pattern_id %></td>
+        <td style="text-align: center;"><%= selected_movie.order_number %></td>
+        <td>
+          <%= link_to "編集", edit_selected_movie_path(selected_movie), remote: true, class: "btn btn-success" %>
+        </td>
+        <td>
+          <%= link_to '戻す', selected_movie_path(selected_movie),
+              class: "btn btn-secondary",
+              method: :delete,
+              remote: true,
+              data: { confirm: "『#{selected_movie.title}』を選択を戻してよろしいですか？",
+                      cancel: 'キャンセル',
+                      commit: '戻す'
+                    }, title: '戻し確認'
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>
+
+
+<script>
+
+    $(function () {
+
+        // dropzoneの表示テキストを初期化
+        initDropzone();
+
+        // listテーブルのitem行が操作された時のリスナーを設定
+        items = document.getElementById('list').getElementsByClassName('item');
+
+        Array.prototype.forEach.call(items, function (item) {
+            $(item).on('dragstart', onDragStart);
+            $(item).on('dragend', onDragEnd);
+        });
+
+        // dropzoneのリスナーを設定
+        var $dropzone = $('#dropzone')
+            .on('dragover', onDragOver)
+            .on('dragenter', onDragEnter)
+            .on('dragleave', onDragLeave)
+            .on('drop', onDrop);
+
+        // dropzoneの表示テキストを指定
+        function initDropzone() {
+            $('#dropzone').text("ここにドロップできます。");
+        }
+
+        function startDropzone() {
+            $('#dropzone').text("ドラッグ中。");
+        }
+
+        function endDropzone(title) {
+            $('#dropzone').text(title + "をドロップしました。");
+        }
+
+        // ドロップ時の処理
+        // (1) ドロップされた行のidをPOSTする
+        // (2) 成功したらリダイレクトする
+        // (3) 失敗したらダイアログを表示する
+        function doAction(id) {
+            $.ajax({
+                url: "<%= selected_movies_add_path %>",
+                type: "POST",
+                data: {
+                    id: id
+                },
+                dataType: "html",
+                success: function (data) {
+                    //alert("success");
+
+                    // dataにドラッグ＆ドロップした
+                    // Movieのid, titleがjson形式で
+                    // 渡される
+                    console.log(data);
+                    // {"id":1,"name":"Yamada Taro"}
+
+                    // 暫定的にページを再読込
+                    location.href = "<%= selected_movies_path %>"
+                },
+                error: function (data) {
+                    alert("errror");
+                }
+            });
+        }
+
+        // ドラッグ＆ドロップ操作
+        function onDragStart(e) {
+            // puts 'onDragStart';
+            var id = e.originalEvent.target.id;
+            var name = e.originalEvent.target.cells[1].innerHTML;
+            e.originalEvent.dataTransfer.setData('id', id);
+            e.originalEvent.dataTransfer.setData('title', title);
+            addDraggingEffect();
+            startDropzone();
+        }
+
+        function onDragEnter(e) {
+            // puts 'onDragEnter';
+            addEnterEffect();
+        }
+
+        function onDragLeave(e) {
+            // puts 'onDragLeave';
+            removeEnterEffect();
+        }
+
+        function onDragOver(e) {
+            // puts 'onDragOver';
+            e.preventDefault();
+        }
+
+        function onDragEnd(e) {
+            // puts 'onDragEnd';
+            resetAllEffect();
+        }
+
+        function onDrop(e) {
+            // puts 'onDrop';
+            e.preventDefault();
+            var id = e.originalEvent.dataTransfer.getData('id');
+            var title = e.originalEvent.dataTransfer.getData('title');
+            endDropzone(title);
+            doAction(id);
+        }
+
+        function addDraggingEffect() {
+            // puts 'addDraggingEffect';
+            $dropzone.addClass('dragging');
+        }
+
+        function removeDraggingEffect() {
+            // puts 'removeDraggingEffect';
+            $dropzone.removeClass('dragging');
+            initDropzone();
+        }
+
+        function addEnterEffect() {
+            // puts 'addEnterEffect';
+            $dropzone.addClass('dragenter');
+        }
+
+        function removeEnterEffect() {
+            // puts 'removeEnterEffect';
+            $dropzone.removeClass('dragenter');
+        }
+
+        function resetAllEffect(e) {
+            // puts 'resetAllEffect';
+            removeDraggingEffect();
+            removeEnterEffect();
+        }
+
+    });
+
+</script>
+
+
+<style>
+
+  .dropzone p {
+    margin: 0;
+    padding: 0;
+    background-color: #0000E9;
+  }
+
+  .dropzone.small {
+    height: 40px;
+  }
+
+  .dropzone {
+    border: 1px solid #555;
+    margin-top: 5px;
+    /*width: 246px;*/
+    min-height: 100px;
+    font-size: 12px;
+
+    text-align: center;
+    line-height: 100px;
+
+    color: gray;
+    background-color: ghostwhite;
+    border-color: gray;
+  }
+
+  .dragging {
+    color: rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 255, .1);
+    border-color: rgba(0, 0, 255, .3);
+  }
+
+  .dragging:after {
+  }
+
+  .dragenter {
+    border-color: rgba(255, 0, 0, .3);
+    background-color: rgba(255, 0, 0, .1);
+  }
+
+</style>

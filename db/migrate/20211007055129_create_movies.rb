@@ -9,6 +9,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       t.string :author_name
       t.integer :pattern_id, default: 0
       t.integer :order_number, default: 0
+      t.boolean :selected, default: false
 
       t.timestamps
     end

@@ -1,4 +1,7 @@
 class MoviesController < ApplicationController
+  # addアクションのみCSRFの対策を除外する。
+  protect_from_forgery except: [:add]
+  before_action :logged_in_user, only: %i(selected_movies add)
 
   # GET /resource/selected_patterns
   def selected_patterns
@@ -10,15 +13,12 @@ class MoviesController < ApplicationController
 
   # GET /resource/index
   def index
-    @movies = Movie.all.order(:pattern_id, :order_number).group_by(&:pattern_id)
+    @movies = Movie.all.order(:pattern_id, :order_number, :id).group_by(&:pattern_id)
   end
 
   # GET /resource/show
   def show
-    # @movies = Movie.where(pattern_id: params[:id]).order(:order_number)
-    # @movie_size = Movie.where(pattern_id: params[:id]).size
-    # @pattern = Pattern.find(params[:id])
-    # @pattern_size = Pattern.all.size
+
   end
 
   # GET /resource/new
@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new
   end
 
-  # POST /resource
+  # POST /resource/create
   def create
     # @patterns = Pattern.all.order(:id)
     # @pattern = Pattern.find(3)
@@ -108,6 +108,39 @@ class MoviesController < ApplicationController
     @pattern = Pattern.find(params[:id])
     @pattern_size = Pattern.all.size
   end
+
+  def selected_movies
+    @movies = Movie.where(selected: false).order(:id)
+    # @selected_movies = Selectedmovie.where(selected: true).order(:movie_id)
+    @selected_movies = Movie.where(selected: true).order(:pattern_id, :order_number)
+  end
+
+  # def add
+  #   movie = Movie.find(params[:id])
+  #   movie.selected = true
+  #   pattern_max = Movie.all.maximum(:pattern_id)
+  #   if pattern_max == 0
+  #     movie.pattern_id = 1
+  #     movie.order_number = 1
+  #   else
+  #     order_number_max = Movie.where(pattern_id: pattern_max).maximum(:order_number)
+  #     if order_number_max == 4
+  #       movie.pattern_id = pattern_max + 1
+  #       movie.order_number = 1
+  #     else
+  #       movie.pattern_id = pattern_max
+  #       movie.order_number = order_number_max + 1
+  #     end
+  #   end
+  #   if movie.save
+  #     hash = {id: movie.id, name: movie.title, pattern_id: movie.pattern_id, order_number: movie.order_number}
+  #     require 'json'
+  #     render :json => hash.to_json
+  #   else
+  #     head 500
+  #   end
+  # end
+
 
   private
 

@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_140459) do
     t.string "author_name"
     t.integer "pattern_id", default: 0
     t.integer "order_number", default: 0
+    t.boolean "selected", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,8 +41,11 @@ ActiveRecord::Schema.define(version: 2021_12_19_140459) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "selected_movies", force: :cascade do |t|
+  create_table "selectedmovies", force: :cascade do |t|
     t.integer "movie_id"
+    t.boolean "selected", default: false
+    t.integer "pattern_id", default: 0
+    t.integer "order_number", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
