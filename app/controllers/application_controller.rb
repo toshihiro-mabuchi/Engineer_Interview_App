@@ -22,23 +22,27 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
+
   private
 
-  # ログイン後のリダイレクト先
-  def after_sign_in_path_for(resource)
-    if current_user
-      flash[:notice] = "ログインに成功しました." 
-      root_path
-    else
-      flash[:danger] = "ログインに失敗しました。ログインをやり直して下さい。" 
-      new_user_session_path
+    # ログイン後のリダイレクト先
+    def after_sign_in_path_for(resource)
+      if current_user
+        flash[:notice] = "ログインに成功しました." 
+        root_path
+      else
+        flash[:danger] = "ログインに失敗しました。ログインをやり直して下さい。" 
+        new_user_session_path
+      end
     end
-  end
 
-  # ログアウト後のリダイレクト先
-  def after_sign_out_path_for(resource_or_scope)
-    flash[:notice] = "ログアウトしました。"
-    root_path
-  end
+    # ログアウト後のリダイレクト先
+    def after_sign_out_path_for(resource_or_scope)
+      flash[:notice] = "ログアウトしました。"
+      root_path
+    end
   
 end

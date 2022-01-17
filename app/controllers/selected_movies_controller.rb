@@ -1,7 +1,7 @@
 class SelectedMoviesController < ApplicationController
-  before_action :logged_in_user, only: %i(selected_movies add)
-
-
+  before_action :logged_in_user
+  before_action :set_movie, only: %i(edit update destroy)
+  
   # GET /resource/index
   def index
     @movies = Movie.where(selected: false).order(:id)
@@ -10,35 +10,49 @@ class SelectedMoviesController < ApplicationController
 
   # GET /resource/edit
   def edit
-    @movie = Movie.find(params[:id]) 
+    # @movie = Movie.find(params[:id]) 
   end
 
   # POST /resource/create
   def create
     movie = Movie.find(params[:id])
-    movie.pattern_id = 0
-    movie.order_number = 0
-    movie.selected = false
-    if movie.save
-      flash[:success] = "動画『#{movie.title}』を一覧に戻しました。"
+    if movie.save!
+      flash[:success] = "動画『#{movie.title}』のパターンと表示順を変更しました。"
       redirect_to selected_movies_path
     else
-      flash[:danger] = "動画『#{movie.title}』を一覧に戻せませんでした。"
+      flash[:danger] = "動画『#{movie.title}』のパターンと表示順を変更できませんでした。"
       redirect_to selected_movies_path
+    end
+  end
+
+  # POST /resource/update
+  def update
+    # @movie = Movie.find(params[:id])
+    if Movie.find_by(pattern_id: params[:movie][:pattern_id], order_number: params[:movie][:order_number])
+      flash[:danger] = "パターンと表示順が既に存在します。"
+      redirect_to selected_movies_path
+    else
+      if @movie.update!(selected_movie_params)
+        flash[:success] = "動画『#{@movie.title}』のパターンと表示順を変更しました。"
+        redirect_to selected_movies_path
+      else
+        flash[:danger] = "動画『#{@movie.title}』のパターンと表示順を変更できませんでした。"
+        redirect_to selected_movies_path
+      end
     end
   end
 
   # DELETE /resource/destroy
   def destroy
-    movie = Movie.find(params[:id])
-    movie.pattern_id = 0
-    movie.order_number = 0
-    movie.selected = false
-    if movie.save
-      flash[:success] = "動画『#{movie.title}』を一覧に戻しました。"
+    # @movie = Movie.find(params[:id])
+    @movie.pattern_id = 0
+    @movie.order_number = 0
+    @movie.selected = false
+    if @movie.save
+      flash[:success] = "動画『#{@movie.title}』を一覧に戻しました。"
       redirect_to selected_movies_path
     else
-      flash[:danger] = "動画『#{movie.title}』を一覧に戻せませんでした。"
+      flash[:danger] = "動画『#{@movie.title}』を一覧に戻せませんでした。"
       redirect_to selected_movies_path
     end
   end
@@ -68,5 +82,11 @@ class SelectedMoviesController < ApplicationController
       head 500
     end
   end
+
+  private
+
+    def selected_movie_params
+      params.require(:movie).permit(:pattern_id, :order_number)
+    end
 
 end

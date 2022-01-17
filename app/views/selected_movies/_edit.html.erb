@@ -2,15 +2,15 @@
   <div class="modal-content">
     <div class="modal-header movie__modal-header">
       <div class="col-10 offset-1">
-        <h3 class="modal-title">面談動画編集</h3>
+        <h3 class="modal-title">パターン・表示順の変更</h3>
       </div>
       <button type="button" class="btn-close" aria-label="close" data-bs-dismiss="modal"></button>
     </div>
     <div class="modal-body movie__modal-body ">
       <div class="col col-md-10 offset-1">
         <div class="edit-movies">
-          <div class="movies__form" style="text-align: center;">
-            <%= form_with(model: @movie, remote: true) do |f| %>
+          <div class="movies__form">
+            <%= form_with model: @movie, url: selected_movie_path, local: true do |f| %>
               <div class="movies__input">
                 <div class="movie__form-group">
                   <%= f.label :title, "タイトル：" %>
@@ -22,21 +22,25 @@
                   <%= @movie.youtube_url %>
                 </div>
                 -->
-                <div class="movie__iframe embed-responsive embed-responsive-21by9">
+                <div class="movie__iframe embed-responsive embed-responsive-21by9" style="text-align: center;">
                   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= @movie.youtube_mid %>"
                           frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                           style="height: 169px;" allowfullscreen>
                   </iframe>
                 </div>
-                <div class="movie__form-group">
-                  <%= f.label :text, "コメント" %>
-                  <%= f.text_area :text, placeholder: '動画説明やコメントを入力できます。（300文字以内）',
-                                          size: "8x4", class: "form-control memo" %>
+                <div style="display: inline;">
+                  <%= f.label :pattern_id, "パターン：" %>
+                  <%= f.number_field :pattern_id, min: "1", max: "10", style: "width: 50px;" %>
+                </div>
+                <div style="display: inline;">
+                  <%= f.label :order_number, "　表示順：" %>
+                  <%= f.number_field :order_number, min: "1", max: "5", style: "width: 50px;" %>
                 </div>
               </div>
+              <br>
               <div class="movie__form-group">
-                <div class="btn-sub-can">
-                  <%= f.submit "更新", name: nil, class: "btn btn-success btn-edit", data: { disable_with: '送信中' } %>
+                <div class="btn-sub-can" style="text-align: center;">
+                  <%= f.submit "　 更新 　", name: nil, class: "btn btn-success btn-edit", data: { disable_with: '送信中' } %>
                   <button type="button" class="btn btn-outline-dark bg-light btn-edit" data-bs-dismiss="modal">
                     キャンセル
                   </button>
