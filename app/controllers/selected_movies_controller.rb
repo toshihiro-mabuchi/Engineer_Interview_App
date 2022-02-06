@@ -68,6 +68,7 @@ class SelectedMoviesController < ApplicationController
       order_number_max = Movie.where(pattern_id: pattern_max).maximum(:order_number)
       if order_number_max == 4
         movie.pattern_id = pattern_max + 1
+        Pattern.create!(name: "パターン#{movie.pattern_id}") unless Pattern.find_by(id: movie.pattern_id)
         movie.order_number = 1
       else
         movie.pattern_id = pattern_max
